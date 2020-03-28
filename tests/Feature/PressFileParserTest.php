@@ -26,7 +26,7 @@ class PressFileParserTest extends TestCase
         $this->assertStringContainsString('description: Description here', $this->data[1]);
         $this->assertStringContainsString('Blog post body here', $this->data[2]);
     }
-    
+
     /** @test */
     public function a_string_can_also_be_used_instead()
     {
@@ -43,7 +43,7 @@ class PressFileParserTest extends TestCase
         $this->assertEquals('My Title', $this->data['title']);
         $this->assertEquals('Description here', $this->data['description']);
     }
-    
+
     /** @test */
     public function the_body_gets_saved_and_trimmed()
     {
