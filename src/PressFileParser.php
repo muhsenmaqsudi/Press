@@ -37,6 +37,7 @@ class PressFileParser
             preg_match('/(.*):\s?(.*)/', $fieldString, $fieldArray);
             $this->data[$fieldArray[1]] = $fieldArray[2];
         }
+        $this->data['body'] = trim($this->data[2]);
     }
 
 }
