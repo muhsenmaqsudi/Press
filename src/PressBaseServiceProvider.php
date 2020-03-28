@@ -15,6 +15,6 @@ class PressBaseServiceProvider extends ServiceProvider
 
     public function register()
     {
-        
+
     }
 }

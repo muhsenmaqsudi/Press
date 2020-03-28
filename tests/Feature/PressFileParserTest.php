@@ -6,7 +6,7 @@ namespace Muhsenmaqsudi\Press\Tests\Feature;
 
 use Carbon\Carbon;
 use Muhsenmaqsudi\Press\PressFileParser;
-use Orchestra\Testbench\TestCase;
+use Muhsenmaqsudi\Press\Tests\TestCase;
 
 class PressFileParserTest extends TestCase
 {

@@ -5,7 +5,7 @@ namespace Muhsenmaqsudi\Press\Tests\Feature;
 
 
 use Muhsenmaqsudi\Press\MarkdownParser;
-use Orchestra\Testbench\TestCase;
+use Muhsenmaqsudi\Press\Tests\TestCase;
 
 class MarkdownTest extends TestCase
 {
