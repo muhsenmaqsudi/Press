@@ -19,4 +19,13 @@ class TestCase extends TestCaseBase
             PressBaseServiceProvider::class,
         ];
     }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        $app['config']->set('database.default', 'testdb');
+        $app['config']->set('database.connections.testdb', [
+            'driver' => 'sqlite',
+            'database' => ':memory:'
+        ]);
+    }
 }
