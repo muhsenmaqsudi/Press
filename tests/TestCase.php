@@ -9,6 +9,13 @@ use Orchestra\Testbench\TestCase as TestCaseBase;
 
 class TestCase extends TestCaseBase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withFactories(__DIR__ . '/../database/factories');
+    }
+
     /**
      * @param \Illuminate\Foundation\Application $app
      * @return array
