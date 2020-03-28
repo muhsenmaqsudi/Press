@@ -1,0 +1,25 @@
+{
+    "name": "Muhsenmaqsudi/Press",
+    "description": "An elegant markdown-powered blog for the laravel framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "muhsenmaqsudi",
+            "email": "muhsenmaqsudi@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Muhsenmaqsudi\\Press\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Muhsenmaqsudi\\Press\\Tests\\": "tests/"
+        }
+    }
+}
