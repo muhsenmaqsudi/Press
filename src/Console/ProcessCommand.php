@@ -5,11 +5,9 @@ namespace Muhsenmaqsudi\Press\Console;
 
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Muhsenmaqsudi\Press\Facades\Press;
 use Muhsenmaqsudi\Press\Post;
-use Muhsenmaqsudi\Press\Press;
-use Muhsenmaqsudi\Press\PressFileParser;
 
 class ProcessCommand extends Command
 {

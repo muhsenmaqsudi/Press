@@ -6,6 +6,7 @@ namespace Muhsenmaqsudi\Press;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Muhsenmaqsudi\Press\Facades\Press;
 
 class PressBaseServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class PressBaseServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadViewsFrom(__DIR__. '/../resources/views', 'press');
 
+        $this->registerFacades();
         $this->registerRoutes();
     }
 
@@ -46,11 +48,18 @@ class PressBaseServiceProvider extends ServiceProvider
         });
     }
 
-    protected function routeConfiguration()
+    private function routeConfiguration()
     {
         return [
             'prefix' => Press::path(),
             'namespace' => 'Muhsenmaqsudi\Press\Http\Controllers'
         ];
+    }
+
+    protected function registerFacades()
+    {
+        $this->app->singleton('Press', function ($app) {
+            return new \Muhsenmaqsudi\Press\Press();
+        });
     }
 }

@@ -8,12 +8,22 @@ use Illuminate\Support\Str;
 
 class Press
 {
-    public static function configNotPublished()
+    /**
+     * Check if Press config file has been published and set
+     *
+     * @return bool
+     */
+    public function configNotPublished()
     {
         return is_null(config('press'));
     }
 
-    public static function driver()
+    /**
+     * Get an instance of the set driver.
+     *
+     * @return mixed
+     */
+    public function driver()
     {
         $driver = Str::title(config('press.driver'));
         $class = 'Muhsenmaqsudi\Press\Drivers\\' . $driver . 'Driver';
@@ -21,7 +31,7 @@ class Press
         return new $class;
     }
 
-    public static function path()
+    public function path()
     {
         return config('press.path', 'blogs');
     }
