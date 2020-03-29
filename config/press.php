@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'path' => 'blogs'
+    'path' => 'blogs',
+    'driver' => 'file'
 ];
