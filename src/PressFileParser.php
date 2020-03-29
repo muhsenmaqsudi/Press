@@ -4,10 +4,9 @@
 namespace Muhsenmaqsudi\Press;
 
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use function Composer\Autoload\title_case;
+use ReflectionClass;
 
 class PressFileParser
 {
@@ -54,12 +53,23 @@ class PressFileParser
     protected function processFields()
     {
         foreach ($this->data as $field => $value) {
-            $class = 'Muhsenmaqsudi\\Press\\Fields\\' . Str::title($field);
+            $class = $this->getField(Str::title($field));
 
             if ( ! class_exists($class) && ! method_exists($class, 'process')) {
                 $class = 'Muhsenmaqsudi\\Press\Fields\\Extra';
             }
             $this->data = array_merge($this->data, $class::process($field, $value, $this->data));
+        }
+    }
+
+    private function getField(string $field)
+    {
+        foreach (\Muhsenmaqsudi\Press\Facades\Press::availableFields() as $availableField) {
+            $class = new ReflectionClass($availableField);
+
+            if ($class->getShortName() == $field) {
+                return $class->getName();
+            }
         }
     }
 
