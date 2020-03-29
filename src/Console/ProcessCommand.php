@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Muhsenmaqsudi\Press\Facades\Press;
 use Muhsenmaqsudi\Press\Post;
+use Muhsenmaqsudi\Press\Repositories\PostRepository;
 
 class ProcessCommand extends Command
 {
@@ -15,7 +16,7 @@ class ProcessCommand extends Command
 
     protected $description = 'Updates blog posts.';
 
-    public function handle()
+    public function handle(PostRepository $postRepository)
     {
         if (Press::configNotPublished()) {
             return $this->warn('Please publush the config file by running ' .
@@ -25,14 +26,12 @@ class ProcessCommand extends Command
         try {
             $posts = Press::driver()->fetchPosts();
 
+            $this->info('Number of Posts:' . count($posts));
+
             foreach ($posts as $post) {
-                Post::create([
-                    'identifier' => $post['identifier'],
-                    'slug' => Str::slug($post['title']),
-                    'title' => $post['title'],
-                    'body' => $post['body'],
-                    'extra' => $post['extra'] ?? []
-                ]);
+                $postRepository->save($post);
+
+                $this->info('Post:' . $post['title']);
             }
         } catch (\Exception $e) {
             $this->error($e->getMessage());
